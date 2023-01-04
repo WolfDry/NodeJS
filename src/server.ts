@@ -19,7 +19,7 @@ function main() {
   const sockets = new Map();
 
   app.use(cookieParser(SECRET_KEY))
-  app.use(express.static(path.join(__dirname, 'public')))
+  app.use(express.static(path.join(__dirname, '../public')))
 
   getLogin(app)
   postLogin(app)
