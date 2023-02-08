@@ -6,23 +6,23 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Chat app</title>
-  <style>
-    #chat-status {
-      display: block;
-      border-radius: 50%;
-      width: 10px;
-      height: 10px;
-    }
-  </style>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <h1>My chat app</h1>
-  <i id="chat-status"></i>
-  <div id="message-list"></div>
-  <form>
-    <input type="text" id="chat-input"/>
-    <button type="submit">Send</button>
-  </form>
-  <script src="/client.js"></script>
+  <nav>
+    <a href="/profile">Profile</a>
+    <a href="/register">Register</a>
+    <a href="/login">Login</a>
+  </nav>
+  <section>
+    <h1>My chat app</h1>
+    <i id="chat-status"></i>
+    <div id="message-list"></div>
+    <form>
+      <input type="text" id="chat-input"/>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+  <script src="/js/client.js"></script>
 </body>
 </html>

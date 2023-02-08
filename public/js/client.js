@@ -6,7 +6,7 @@ function addMessage(name, message) {
     .createElement('div');
   const nameElement = document
     .createElement('b');
-  nameElement.innerText = name;
+  nameElement.innerText = name + " : ";
   messageElement.appendChild(nameElement);
   const textElement = document
     .createElement('span');

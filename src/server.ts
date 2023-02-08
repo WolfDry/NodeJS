@@ -4,11 +4,16 @@ import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import path from 'path'
 import { getLogin } from "./routes/getLogin";
+import { postLogin } from "./routes/postLogin";
 import { getRegister } from "./routes/getRegister";
+import { postRegister } from "./routes/postRegister";
 import { getRoot } from "./routes/getRoot";
 import { getWs } from "./routes/getWs";
-import { postLogin } from "./routes/postLogin";
-import { postRegister } from "./routes/postRegister";
+import { getProfile } from "./routes/getProfile";
+import { getUser } from "./routes/getUser";
+import { updateProfile } from "./routes/postProfile";
+import { deleteProfile } from "./routes/deleteProfile";
+import { logout } from "./routes/logout";
 import { authenticationMiddleware } from "./middlewares/authenticationMiddleware";
 
 const SECRET_KEY = 'MySecretKeyIsAwesome'
@@ -29,6 +34,11 @@ function main() {
   app.use(authenticationMiddleware)
   getRoot(app)
   getWs(app, sockets)
+  getProfile(app)
+  getUser(app)
+  updateProfile(app)
+  deleteProfile(app)
+  logout(app)
 
   app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
     console.error(error)

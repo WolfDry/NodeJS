@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav>
+        <a href="/">Accueil</a>
+        <a href="/profile">Profile</a>
+    </nav>
+    <h1>Profile</h1>
+    <div class="content">
+        <form action="" method="post">
+            <input id="nameInput" type="text" value="name" placeholder="name" name="name">
+            <input id="emailInput" type="text" value="email" placeholder="email" name="email">
+            <input id="oldEmailInput" type="hidden" name="oldEmail">
+            <button type="submit">Valid</button>
+        </form>
+
+        <form id="form" action="/deleteProfile" method="post">
+            <button type="submit">Delete Account</button>
+        </form>
+        
+        <form action="/logout" method="get">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+
+    <script>
+        // Récupère les données de l'utilisateur pour les afficher
+        let nameInput = document.getElementById('nameInput')
+        let emailInput = document.getElementById('emailInput')
+        let oldEmailInput = document.getElementById('oldEmailInput')
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            var result = this.responseText;
+            data = JSON.parse(result)
+            nameInput.value = data.name
+            nameInput.placeholder = data.name
+            emailInput.value = data.email
+            emailInput.placeholder = data.email
+            oldEmailInput.value = data.email
+            document.getElementById('form').action = document.getElementById('form').action + data.id
+        }
+        xhttp.open("GET", "/getuser");
+        xhttp.send();
+    </script>
+</body>
+</html>
