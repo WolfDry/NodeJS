@@ -4,3 +4,39 @@
     width: 10px;
     height: 10px;
 }
+
+.message{
+    margin: 15px;
+    padding: 10px;
+    background-color: #72cfec;
+    border-radius: 8px;
+    width: auto;
+    max-width: 200px;
+    font-size: 1em;
+}
+
+#message-list :nth-of-type(2n){
+    background-color: #72ec90;
+}
+
+#form-chat{
+    margin-top: 20px;
+    display: flex;
+    align-content: center;
+}
+
+#form-chat input{
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+#form-chat button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#form-chat button svg{
+    fill: #00e7ff !important;
+}

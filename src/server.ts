@@ -14,6 +14,7 @@ import { getUser } from "./routes/getUser";
 import { updateProfile } from "./routes/postProfile";
 import { deleteProfile } from "./routes/deleteProfile";
 import { logout } from "./routes/logout";
+import { getChat } from "./routes/getChat";
 import { authenticationMiddleware } from "./middlewares/authenticationMiddleware";
 
 const SECRET_KEY = 'MySecretKeyIsAwesome'
@@ -30,9 +31,10 @@ function main() {
   postLogin(app)
   getRegister(app)
   postRegister(app)
-
+  
   app.use(authenticationMiddleware)
   getRoot(app)
+  getChat(app)
   getWs(app, sockets)
   getProfile(app)
   getUser(app)

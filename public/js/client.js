@@ -2,14 +2,15 @@ const messageList = document.getElementById('message-list');
 const chatStatus = document.getElementById('chat-status');
 
 function addMessage(name, message) {
-  const messageElement = document
-    .createElement('div');
-  const nameElement = document
-    .createElement('b');
+  const messageElement = document.createElement('div');
+  messageElement.classList.add('message')
+  const nameElement = document.createElement('b');
+
   nameElement.innerText = name + " : ";
   messageElement.appendChild(nameElement);
-  const textElement = document
-    .createElement('span');
+
+  const textElement = document.createElement('span');
+
   textElement.innerText = message;
   messageElement.appendChild(textElement);
   messageList.appendChild(messageElement);

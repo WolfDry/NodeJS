@@ -6,7 +6,7 @@ export function getLogin(app: Application) {
     // On vérifie si l'utilisateur est connecté
     // Si l'utilisateur est connecté, on le renvoie vers la page d'accueil
     if (req.signedCookies.ssid) {
-      res.redirect('/')
+      res.redirect('/profile')
       return
     }
     // Sinon on affiche la page de connection
