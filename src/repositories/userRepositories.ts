@@ -1,3 +1,4 @@
+import { Post } from "@prisma/client";
 import { prisma } from "./prisma";
 
 export function findUserByEmail(email: string){

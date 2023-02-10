@@ -8,6 +8,7 @@ import { postLogin } from "./routes/postLogin";
 import { getRegister } from "./routes/getRegister";
 import { postRegister } from "./routes/postRegister";
 import { getRoot } from "./routes/getRoot";
+import { postRoot } from "./routes/postRoot";
 import { getWs } from "./routes/getWs";
 import { getProfile } from "./routes/getProfile";
 import { getUser } from "./routes/getUser";
@@ -34,6 +35,7 @@ function main() {
   
   app.use(authenticationMiddleware)
   getRoot(app)
+  postRoot(app)
   getChat(app)
   getWs(app, sockets)
   getProfile(app)
