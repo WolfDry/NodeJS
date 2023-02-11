@@ -2,6 +2,7 @@ import path from "path";
 import {Application} from "express-ws";
 import { findUserById } from "../repositories/userRepositories";
 import { authenticationMiddleware } from "../middlewares/authenticationMiddleware"
+import { findPost } from "../repositories/postRepositories";
 
 export function getRoot(app: Application) {
   app.get('/', authenticationMiddleware, async (req, res) => {
@@ -17,6 +18,7 @@ export function getRoot(app: Application) {
       return
     }
 
+    const posts = await findPost()
     res.sendFile(path.join(__dirname, '../../pages/index.html'))
   })
 }

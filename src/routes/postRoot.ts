@@ -1,7 +1,7 @@
 import {Application} from "express-ws";
 import bodyParser from "body-parser";
-import { findUserById, updateUser } from "../repositories/userRepositories";
-import { createPost } from "../repositories/postRepositories";
+import { findUserById, updatePostsAndUser } from "../repositories/userRepositories";
+import { createPost, findLastPostByUser } from "../repositories/postRepositories";
 
 export function postRoot(app: Application) {
   app.post('/', bodyParser.urlencoded(), async (req, res) => {
@@ -16,11 +16,23 @@ export function postRoot(app: Application) {
       }
       // On vient créer le post et on redirige vers la page d'accueil
       if(await createPost(content, user.id)){
-        res.redirect('/')
+        // On vient récupérer le post que l'on vient de créer
+        const lastPost = await findLastPostByUser(user.id)
+        if(!lastPost){
+            res.status(401).send('Error post creation');
+            return
+        }
+        // on vient mettre à jour la liste des posts de l'utilisateur
+        if(await updatePostsAndUser(lastPost.id, user.id)){
+            res.redirect('/')
+            return
+        }
+        // Si une erreur survient lors de la mise à jour de la liste des posts de l'utilisateur on retourne une erreur
+        res.status(401).send('Error update user');
         return
       }
       // Si une erreur survient lors de la création on retourne une erreur
-      res.status(401).send('Invalid parameters');
+      res.status(401).send('Error create post');
       return
     }
   )

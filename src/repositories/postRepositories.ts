@@ -9,7 +9,22 @@ export function findPostByUser(userId: string){
 }
 
 export function findPost(){
-    return prisma.post.findMany()
+    return prisma.post.findMany({
+        orderBy: {
+            createdAt: 'desc'
+        }
+    })
+}
+
+export function findLastPostByUser(userId: string){
+    return prisma.post.findFirst({
+        where: {
+            userId
+        },
+        orderBy: {
+            createdAt: 'desc'
+        }
+    })
 }
 
 export function createPost(content: string, userId: string){
@@ -20,18 +35,6 @@ export function createPost(content: string, userId: string){
         }
     })
 }
-
-// export function updateUser(id: string, name: string, email: string){
-//     return prisma.user.update({
-//         where: {
-//             id
-//         },
-//         data: {
-//             email,
-//             name
-//         }
-//     })
-// }
 
 export function deletePost(id: string){
     return prisma.post.delete({

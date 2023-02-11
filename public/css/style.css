@@ -1,3 +1,14 @@
+#post{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 400px;
+    margin: 10px;
+    background-color: #c8c8c8;
+    border-radius: 10px;
+}
+
+
 #chat-status {
     display: block;
     border-radius: 50%;

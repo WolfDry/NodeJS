@@ -9,6 +9,7 @@
 <body>
     <nav>
         <a href="/">Accueil</a>
+        <a href="/chat">Chat</a>
         <a href="/profile">Profile</a>
     </nav>
     <h1>Profile</h1>
@@ -27,6 +28,8 @@
         <form action="/logout" method="get">
             <button type="submit">Logout</button>
         </form>
+
+        <div id="posts"></div>
     </div>
 
     <script>
@@ -38,12 +41,20 @@
         xhttp.onload = function() {
             var result = this.responseText;
             data = JSON.parse(result)
+            posts = data.posts
             nameInput.value = data.name
             nameInput.placeholder = data.name
             emailInput.value = data.email
             emailInput.placeholder = data.email
             oldEmailInput.value = data.email
-            document.getElementById('form').action = document.getElementById('form').action + data.id
+
+            divPost = document.getElementById('posts')
+            for (let index = 0; index < posts.length; index++) {
+                const element = posts[index];
+                let content = document.createElement('p')
+                content.innerHTML = element.content
+                divPost.appendChild(content)
+            }
         }
         xhttp.open("GET", "/getuser");
         xhttp.send();

@@ -12,8 +12,6 @@
   <nav>
     <a href="/chat">Chat</a>
     <a href="/profile">Profile</a>
-    <a href="/register">Register</a>
-    <a href="/login">Login</a>
   </nav>
   <section>
     <h1>Accueil</h1>
@@ -23,5 +21,33 @@
       <button type="submit">Post</button>
     </form>
   </section>
+  <section>
+    <div id="posts"></div>
+  </section>
+
+  <script>
+    const xhttp = new XMLHttpRequest();
+      xhttp.onload = function() {
+          var result = this.responseText;
+          data = JSON.parse(result)
+          
+          divPost = document.getElementById('posts')
+          for (let index = 0; index < data.length; index++) {
+            const element = data[index];
+            let div = document.createElement('div')
+            div.id = "post"
+            let content = document.createElement('p')
+            content.innerHTML = element.content
+            let date = document.createElement('span')
+            const elementDate = new Date(element.createdAt)
+            date.innerHTML = elementDate.toLocaleString()
+            div.appendChild(content)
+            div.appendChild(date)
+            divPost.appendChild(div)
+          }
+      }
+      xhttp.open("GET", "/getposts");
+      xhttp.send();
+  </script>
 </body>
 </html>
