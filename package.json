@@ -1,6 +1,6 @@
 {
   "name": "benjamin-b3-nodejs",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Lorem ipsum dolor sit amet",
   "main": "src/server.ts",
   "repository": "https://github.com/WolfDry/NodeJS",
