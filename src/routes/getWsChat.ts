@@ -2,8 +2,8 @@ import { Application } from "express-ws";
 import { WebSocket } from "ws";
 import { findUserById } from "../repositories/userRepositories";
 
-export function getWs(app: Application, sockets: Map<string, WebSocket>) {
-  app.ws('/ws', async (ws, req) => {
+export function getWsChat(app: Application, sockets: Map<string, WebSocket>) {
+  app.ws('/wsChat', async (ws, req) => {
     const user = await findUserById(req.signedCookies.ssid);
     if (!user) {
       ws.close();

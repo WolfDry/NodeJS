@@ -1,6 +1,5 @@
 import expressWs, {Application} from "express-ws";
 import express, { NextFunction, Request, Response } from "express";
-import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import path from 'path'
 import { getLogin } from "./routes/getLogin";
@@ -9,15 +8,16 @@ import { getRegister } from "./routes/getRegister";
 import { postRegister } from "./routes/postRegister";
 import { getRoot } from "./routes/getRoot";
 import { postRoot } from "./routes/postRoot";
-import { getWs } from "./routes/getWs";
+import { getWsChat } from "./routes/getWsChat";
 import { getProfile } from "./routes/getProfile";
 import { getUser } from "./routes/getUser";
 import { updateProfile } from "./routes/postProfile";
 import { deleteProfile } from "./routes/deleteProfile";
 import { logout } from "./routes/logout";
 import { getChat } from "./routes/getChat";
-import { authenticationMiddleware } from "./middlewares/authenticationMiddleware";
 import { getPosts } from "./routes/getPosts";
+import { getWsPosts } from "./routes/getWsPosts";
+import { authenticationMiddleware } from "./middlewares/authenticationMiddleware";
 
 const SECRET_KEY = 'MySecretKeyIsAwesome'
 
@@ -38,8 +38,9 @@ function main() {
   getRoot(app)
   postRoot(app)
   getPosts(app)
+  getWsPosts(app, sockets)
   getChat(app)
-  getWs(app, sockets)
+  getWsChat(app, sockets)
   getProfile(app)
   getUser(app)
   updateProfile(app)

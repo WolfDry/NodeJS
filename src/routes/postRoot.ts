@@ -24,7 +24,7 @@ export function postRoot(app: Application) {
         }
         // on vient mettre à jour la liste des posts de l'utilisateur
         if(await updatePostsAndUser(lastPost.id, user.id)){
-            res.redirect('/')
+            res.status(200).send('Success');
             return
         }
         // Si une erreur survient lors de la mise à jour de la liste des posts de l'utilisateur on retourne une erreur

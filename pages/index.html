@@ -15,9 +15,9 @@
   </nav>
   <section>
     <h1>Accueil</h1>
-    <form action="" method="post">
+    <form>
       <h3>Create a post</h3>
-      <textarea name="content" cols="30" rows="10"></textarea>
+      <textarea id="post-input" name="content" cols="30" rows="10"></textarea>
       <button type="submit">Post</button>
     </form>
   </section>
@@ -25,29 +25,33 @@
     <div id="posts"></div>
   </section>
 
+  <script src="https://code.jquery.com/jquery-3.6.2.js" integrity="sha256-pkn2CUZmheSeyssYw3vMp1+xyub4m+e+QK4sQskvuo4=" crossorigin="anonymous"></script>
+  <script src="/js/clientPosts.js"></script>
   <script>
+
+    // On va chercher tous les posts pour les afficher
     const xhttp = new XMLHttpRequest();
-      xhttp.onload = function() {
-          var result = this.responseText;
-          data = JSON.parse(result)
-          
-          divPost = document.getElementById('posts')
-          for (let index = 0; index < data.length; index++) {
-            const element = data[index];
-            let div = document.createElement('div')
-            div.id = "post"
-            let content = document.createElement('p')
-            content.innerHTML = element.content
-            let date = document.createElement('span')
-            const elementDate = new Date(element.createdAt)
-            date.innerHTML = elementDate.toLocaleString()
-            div.appendChild(content)
-            div.appendChild(date)
-            divPost.appendChild(div)
-          }
+    xhttp.onload = function() {
+      var result = this.responseText;
+      data = JSON.parse(result)
+
+      divPost = document.getElementById('posts')
+      for (let index = 0; index < data.length; index++) {
+        const element = data[index];
+        let div = document.createElement('div')
+        div.id = "post"
+        let content = document.createElement('p')
+        content.innerHTML = element.content
+        let date = document.createElement('span')
+        const elementDate = new Date(element.createdAt)
+        date.innerHTML = elementDate.toLocaleString()
+        div.appendChild(content)
+        div.appendChild(date)
+        divPost.appendChild(div)
       }
-      xhttp.open("GET", "/getposts");
-      xhttp.send();
+    }
+    xhttp.open("GET", "/getposts");
+    xhttp.send();
   </script>
 </body>
 </html>

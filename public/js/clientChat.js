@@ -1,6 +1,12 @@
 const messageList = document.getElementById('message-list');
 const chatStatus = document.getElementById('chat-status');
 
+
+/**
+ * Permet l'affichage du message
+ * @param {string} name 
+ * @param {string} message 
+ */
 function addMessage(name, message) {
   const messageElement = document.createElement('div');
   messageElement.classList.add('message')
@@ -18,8 +24,12 @@ function addMessage(name, message) {
 
 let ws
 
+/**
+ * Permet la connexion avec le webSocket
+ */
 function connect() {
-  ws = new WebSocket('ws://localhost:3000/ws');
+  ws = new WebSocket('ws://localhost:3000/wsChat');
+
   ws.onopen = () => {
     console.log('Connected');
     chatStatus.style.backgroundColor = 'green';
